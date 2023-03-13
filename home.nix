@@ -28,7 +28,6 @@
         oderwat.indent-rainbow
         eamodio.gitlens
         github.vscode-pull-request-github
-        github.copilot
         usernamehw.errorlens
         tamasfe.even-better-toml
         serayuzgur.crates
@@ -50,6 +49,12 @@
           publisher = "mushan";
           version = "1.0.4";
           sha256 = "a6prHWZ8neNYJ+ZDE9ZvA79+5X0UlsFf8XSHYfOmd/I=";
+        }
+        {
+          name = "copilot";
+          publisher = "github";
+          version = "1.77.9225";
+          sha256 = "tRAjWiaUIkAULfgWWAKVVz7Zgugw0CQtFIdvf9fhmKs=";
         }
       ];
       userSettings = {
