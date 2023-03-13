@@ -58,20 +58,22 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
   
   services.dbus.packages = [ pkgs.gcr ];
 
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
+    enable = true;
+    layout = "us,ua,ru";
     xkbVariant = "";
+    xkbOptions = "grp:win_space_toggle";
+    exportConfiguration = true;
   };
 
   # Enable CUPS to print documents.
@@ -118,6 +120,7 @@
      vim
      wget
   ];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   virtualisation.docker.enable = true;
 
