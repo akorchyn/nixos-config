@@ -104,21 +104,23 @@
     isNormalUser = true;
     description = "Artur-Yurii Korchynskyi";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
+    packages = with pkgs; [];
     shell = pkgs.zsh;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.firefox.enableGnomeExtensions = true;
+  services.gnome.gnome-browser-connector.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim
-     wget
+    vim
+    wget
+    firefox
+    gnomeExtensions.dash-to-dock
+    nix-index
   ];
   environment.pathsToLink = [ "/share/zsh" ];
 

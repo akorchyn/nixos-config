@@ -49,6 +49,7 @@
     "workbench.iconTheme" = "material-icon-theme";
     "workbench.sideBar.location" = "right";
     "markdown.updateLinksOnFileMove.enabled" = "always";
+    "terminal.integrated.fontFamily" = "MesloLGS NF";
     "protoc" = {
       "options" = [
         "--proto_path=**/proto"

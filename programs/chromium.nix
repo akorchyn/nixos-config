@@ -6,6 +6,6 @@
     {id = "nkbihfbeogaeaoehlefnkodbefgpgknn"; } # metamask
     {id = "mopnmbcafieddcagagdcbnhejhlodfdd"; } # polkadot js apps
     {id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # grammarly
-    {id = "hdokiejnpimakedhajhdlcegeplioahd"; } # lastpass
+    {id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden extension
   ];
 }

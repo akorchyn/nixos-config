@@ -12,6 +12,8 @@
       pkgs.tdesktop
       pkgs.discord
       pkgs.pinentry-curses
+      pkgs.zsh-powerlevel10k
+      pkgs.meslo-lgs-nf
     ];
   };
 
@@ -20,8 +22,9 @@
     
     vscode = import ./programs/vscode.nix pkgs;
     git = import ./programs/git.nix;
-    zsh = import ./programs/zsh.nix;
+    zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
+    gnome-terminal = import ./programs/gnome-terminal.nix;
 
     gpg.enable = true;
     gh.enable = true;
