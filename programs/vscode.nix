@@ -50,6 +50,7 @@
     "workbench.sideBar.location" = "right";
     "markdown.updateLinksOnFileMove.enabled" = "always";
     "terminal.integrated.fontFamily" = "MesloLGS NF";
+    "terminal.integrated.shell.osx" = "/etc/profiles/per-user/yurtur/bin/zsh";
     "protoc" = {
       "options" = [
         "--proto_path=**/proto"

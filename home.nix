@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  xsession.preferStatusNotifierItems = true;
 
   home = {
     username = "yurtur";
