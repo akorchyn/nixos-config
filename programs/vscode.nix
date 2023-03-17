@@ -2,7 +2,7 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.unstable.vscode;
+  package = pkgs.vscode;
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector

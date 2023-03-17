@@ -3,22 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };  
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-vscode-extensions, nixpkgs-unstable, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-vscode-extensions, ... }:
     let
       user = "yurtur";
       system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true; 
@@ -32,7 +25,6 @@
             );
           })
           nix-vscode-extensions.overlays.default
-          overlay-unstable
         ];
       };
       lib = nixpkgs.lib;
