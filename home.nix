@@ -15,6 +15,7 @@
       pkgs.pinentry-curses
       pkgs.zsh-powerlevel10k
       pkgs.meslo-lgs-nf
+      pkgs.xclip
     ];
   };
 
