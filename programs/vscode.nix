@@ -2,11 +2,10 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.vscode;
+  package = pkgs.vscode.fhsWithPackages (ps: with ps; [ llvm lldb ]);
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
-    vadimcn.vscode-lldb
     oderwat.indent-rainbow
     eamodio.gitlens
     github.vscode-pull-request-github
@@ -23,6 +22,7 @@
     mushan.vscode-paste-image
     rust-lang.rust-analyzer
     github.copilot-labs
+    davidanson.vscode-markdownlint
   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "copilot";
@@ -74,10 +74,14 @@
     "rust-analyzer.check.extraArgs" = [ "--release" ];
     "rust-analyzer.runnables.extraArgs" = [ "--release" ];
     "rust-analyzer.checkOnSave.extraArgs" = [ "--release" ];
+    "rust-analyzer.server.path" = "rust-analyzer";
 
     "git.suggestSmartCommit" = false;
     "[rust]" = {
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
     };
+    "markdownlint.ignore" = [
+      "target"
+    ];
   };
 }
