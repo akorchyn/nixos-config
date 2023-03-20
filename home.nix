@@ -16,6 +16,7 @@
       pkgs.zsh-powerlevel10k
       pkgs.meslo-lgs-nf
       pkgs.xclip
+      pkgs.killall
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.appindicator
     ];

@@ -20,7 +20,6 @@
     zxh404.vscode-proto3
     ms-vscode-remote.remote-containers
     mushan.vscode-paste-image
-    rust-lang.rust-analyzer
     github.copilot-labs
     davidanson.vscode-markdownlint
   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -29,6 +28,12 @@
       publisher = "github";
       version = "1.77.9225";
       sha256 = "tRAjWiaUIkAULfgWWAKVVz7Zgugw0CQtFIdvf9fhmKs=";
+    }
+    {
+      name = "rust-analyzer";
+      publisher = "rust-lang";
+      version = "0.4.1442"; 
+      sha256 = "0yRobpChDzqxEWIngvWuTeG/nUHStagjCIJpnNDF7zE=";
     }
   ];
   userSettings = {
