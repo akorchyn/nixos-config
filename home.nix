@@ -16,6 +16,8 @@
       pkgs.zsh-powerlevel10k
       pkgs.meslo-lgs-nf
       pkgs.xclip
+      pkgs.gnomeExtensions.dash-to-dock
+      pkgs.gnomeExtensions.appindicator
     ];
   };
 
@@ -38,6 +40,7 @@
       pinentryFlavor = "gnome3";
       enableSshSupport = true;
     };
-
   };
+
+  dconf.settings = import ./settings/dconf.nix;
 }

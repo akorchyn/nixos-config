@@ -117,10 +117,10 @@
     vim
     wget
     firefox
-    gnomeExtensions.dash-to-dock
     nix-index
   ];
   environment.pathsToLink = [ "/share/zsh" ];
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   virtualisation.docker.enable = true;
 
