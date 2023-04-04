@@ -79,6 +79,7 @@
     "rust-analyzer.check.extraArgs" = [ "--release" ];
     "rust-analyzer.runnables.extraArgs" = [ "--release" ];
     "rust-analyzer.checkOnSave.extraArgs" = [ "--release" ];
+    "rust-analyzer.checkOnSave.command" = "clippy";
     "rust-analyzer.server.path" = "rust-analyzer";
 
     "git.suggestSmartCommit" = false;
