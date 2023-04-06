@@ -89,5 +89,9 @@
     "markdownlint.ignore" = [
       "target"
     ];
+    "gitlens.currentLine.enabled" = true;
+    "gitlens.views.repositories.includeWorkingTree" = true;
+    "gitlens.views.stashes.files.compact" = true;
+    "gitlens.views.contributors.showAllBranches" = true;
   };
 }
