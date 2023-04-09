@@ -30,6 +30,7 @@
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
     gnome-terminal = import ./programs/gnome-terminal.nix;
+    helix = import ./programs/helix.nix;
 
     gpg.enable = true;
     gh.enable = true;

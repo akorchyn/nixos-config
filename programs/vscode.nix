@@ -2,7 +2,7 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.vscode.fhsWithPackages (ps: with ps; [ llvm lldb ]);
+  package = pkgs.vscode;
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
