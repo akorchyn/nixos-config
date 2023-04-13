@@ -19,6 +19,8 @@
       pkgs.killall
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.appindicator
+      pkgs.dbeaver
+      pkgs.docker-compose
     ];
   };
 

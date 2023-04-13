@@ -2,7 +2,7 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.vscode;
+  package = pkgs.vscode.fhsWithPackages (ps: with ps; [ mysql ]);
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
