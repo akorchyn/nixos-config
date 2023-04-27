@@ -30,5 +30,6 @@
   initExtra = ''
     source $HOME/.p10k.zsh
     export PATH="$HOME/.npm-packages/bin:$PATH"
+    eval "$(github-copilot-cli alias -- "$0")"
   '';
 }
