@@ -21,6 +21,7 @@
       pkgs.gnomeExtensions.appindicator
       pkgs.dbeaver
       pkgs.docker-compose
+      pkgs.nodejs-18_x
     ];
   };
 

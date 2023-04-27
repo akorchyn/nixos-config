@@ -27,5 +27,8 @@
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
   ];
-  initExtra = "source $HOME/.p10k.zsh";
+  initExtra = ''
+    source $HOME/.p10k.zsh
+    export PATH="$HOME/.npm-packages/bin:$PATH"
+  '';
 }
