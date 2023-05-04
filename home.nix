@@ -22,9 +22,10 @@
       pkgs.dbeaver
       pkgs.docker-compose
       pkgs.nodejs-18_x
+      pkgs.gcc
     ];
   };
-
+  xdg.configFile."nvim".source = ./conf.d/nvim;
   programs = {
     home-manager.enable = true;
     
@@ -33,7 +34,7 @@
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
     gnome-terminal = import ./programs/gnome-terminal.nix;
-    helix = import ./programs/helix.nix;
+    neovim = import ./programs/neovim.nix;
 
     gpg.enable = true;
     gh.enable = true;
