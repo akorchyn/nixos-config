@@ -23,6 +23,7 @@
       pkgs.docker-compose
       pkgs.nodejs-18_x
       pkgs.gcc
+      pkgs.ripgrep
     ];
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;
