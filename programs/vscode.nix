@@ -2,7 +2,13 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.vscode.fhsWithPackages (ps: with ps; [ mysql ]);
+  package = (pkgs.vscode.override{ isInsiders = true; }).overrideAttrs (oldAttrs: rec {
+      src = (builtins.fetchTarball {
+        url = "https://update.code.visualstudio.com/latest/linux-x64/insider";
+        sha256 = "00b0ifgbnaxxw6hgfhzxkx4yb8dyvf3xkw9702w6l2alin6wxgk3";
+      });
+      version = "latest";
+    });
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
@@ -23,12 +29,6 @@
     github.copilot-labs
     davidanson.vscode-markdownlint
   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    {
-      name = "copilot";
-      publisher = "github";
-      version = "1.77.9225";
-      sha256 = "tRAjWiaUIkAULfgWWAKVVz7Zgugw0CQtFIdvf9fhmKs=";
-    }
     {
       name = "rust-analyzer";
       publisher = "rust-lang";
