@@ -32,6 +32,12 @@
     
     vscode = import ./programs/vscode.nix pkgs;
     git = import ./programs/git.nix;
+    direnv = {
+      enable = true;
+      enableZshIntegration = true; 
+      nix-direnv.enable = true;
+    };
+
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
     gnome-terminal = import ./programs/gnome-terminal.nix;

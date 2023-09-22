@@ -2,13 +2,7 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = (pkgs.vscode.override{ isInsiders = true; }).overrideAttrs (oldAttrs: rec {
-      src = (builtins.fetchTarball {
-        url = "https://update.code.visualstudio.com/latest/linux-x64/insider";
-        sha256 = "00b0ifgbnaxxw6hgfhzxkx4yb8dyvf3xkw9702w6l2alin6wxgk3";
-      });
-      version = "latest";
-    });
+  package = pkgs.vscode.fhs;
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
