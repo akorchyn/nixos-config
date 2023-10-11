@@ -16,7 +16,6 @@
     loader = {
       grub = {
         enable = true;
-        version = 2;
         devices = ["nodev"];
         useOSProber = true;
         configurationLimit = 5;
