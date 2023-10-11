@@ -87,5 +87,11 @@
     "gitlens.views.repositories.includeWorkingTree" = true;
     "gitlens.views.stashes.files.compact" = true;
     "gitlens.views.contributors.showAllBranches" = true;
+    "tailwindCSS.experimental.classRegex" =  [
+      "class: \"(.*)\""
+    ];
+    "tailwindCSS.includeLanguages" = {
+      "rust" = "html";
+    };
   };
 }

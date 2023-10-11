@@ -24,6 +24,7 @@
       pkgs.nodejs-18_x
       pkgs.gcc
       pkgs.ripgrep
+      pkgs.jetbrains-toolbox
     ];
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;
