@@ -38,6 +38,13 @@
       fsType = "ext4";
     };
 
+  fileSystems."/nix" = {
+     device = "/dev/disk/by-uuid/fa2ae544-fd73-44c9-9eaf-063c0240e224";
+     fsType = "ext4";
+     neededForBoot = true;
+     options = [ "noatime" ];
+   };
+
   boot.initrd.luks.devices."luks-98e53245-477e-4ab1-85ef-34fe0124a315".device = "/dev/disk/by-uuid/98e53245-477e-4ab1-85ef-34fe0124a315";
 
   swapDevices = [ ];
