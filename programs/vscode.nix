@@ -93,5 +93,6 @@
     "tailwindCSS.includeLanguages" = {
       "rust" = "html";
     };
+    "files.insertFinalNewline" = true;
   };
 }

@@ -127,9 +127,15 @@
     wget
     firefox
     nix-index
+    k3s
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.k3s.enable = true;
+  services.k3s.role = "server";
+  networking.firewall.allowedTCPPorts = [
+    6443
+  ];
 
   virtualisation.docker.enable = true;
 
