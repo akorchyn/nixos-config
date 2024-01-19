@@ -20,7 +20,6 @@
     zxh404.vscode-proto3
     ms-vscode-remote.remote-containers
     mushan.vscode-paste-image
-    github.copilot-labs
     davidanson.vscode-markdownlint
   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
