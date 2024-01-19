@@ -117,7 +117,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.firefox.enableGnomeExtensions = true;
+  nixpkgs.config.firefox.nativeMessagingHosts.packages = with pkgs; [
+    gnome-browser-connector
+  ];
   services.gnome.gnome-browser-connector.enable = true;
 
   # List packages installed in system profile. To search, run:
