@@ -5,7 +5,7 @@
     allowBold = true;
     default = true;
     visibleName = "Yurtur";
-    font = "MesloLGS NF";
+    font = "MesloLGS NF 10";
     transparencyPercent = 30;
   };
 }
