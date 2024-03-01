@@ -39,6 +39,14 @@
       nix-direnv.enable = true;
     };
 
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        "--cmd cd"
+      ];
+    };
+
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
     gnome-terminal = import ./programs/gnome-terminal.nix;
