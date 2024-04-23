@@ -51,7 +51,7 @@
 
   zramSwap =  {
     enable = true;
-    algorithm = "lz4";
+    algorithm = "zstd";
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -25,6 +25,8 @@
       pkgs.gcc
       pkgs.ripgrep
       pkgs.brave
+      pkgs.insomnia
+      pkgs.ledger-live-desktop
     ];
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;

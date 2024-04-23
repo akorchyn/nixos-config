@@ -89,6 +89,7 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.ledger.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -110,7 +111,7 @@
   users.users.yurtur = {
     isNormalUser = true;
     description = "Artur-Yurii Korchynskyi";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "plugdev" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -132,7 +133,7 @@
     k3s
   ];
   environment.pathsToLink = [ "/share/zsh" ];
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];
   services.k3s.enable = true;
   services.k3s.role = "server";
 
