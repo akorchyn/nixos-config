@@ -89,6 +89,7 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.logitech.wireless.enable = true;
   hardware.ledger.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {

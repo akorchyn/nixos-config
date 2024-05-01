@@ -47,7 +47,10 @@
 
   boot.initrd.luks.devices."luks-98e53245-477e-4ab1-85ef-34fe0124a315".device = "/dev/disk/by-uuid/98e53245-477e-4ab1-85ef-34fe0124a315";
 
-  swapDevices = [ ];
+  swapDevices = [  {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  }];
 
   zramSwap =  {
     enable = true;

@@ -27,6 +27,9 @@
       pkgs.brave
       pkgs.insomnia
       pkgs.ledger-live-desktop
+      pkgs.gpu-screen-recorder
+      pkgs.gpu-screen-recorder-gtk
+      pkgs.solaar
     ];
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;
