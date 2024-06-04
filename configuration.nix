@@ -72,16 +72,35 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
     displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+			enable = true;
+			wayland = true;
+		};
+    desktopManager.gnome.enable = true;
     xkb.layout = "us,ua,ru";
     xkb.variant = "";
     xkb.options = "grp:win_space_toggle";
     exportConfiguration = true;
   };
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    cheese # webcam tool
+    gnome-music
+    gnome-terminal
+    pkgs.gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    evince # document viewer
+    gnome-characters
+    totem # video player
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+  ]);
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -132,6 +151,8 @@
     firefox
     nix-index
     k3s
+    gnome.adwaita-icon-theme
+    gnomeExtensions.appindicator
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];

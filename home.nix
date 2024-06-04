@@ -95,5 +95,6 @@
     };
   };
 
+  dconf.enable = true;
   dconf.settings = import ./settings/dconf.nix;
 }
