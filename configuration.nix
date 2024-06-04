@@ -77,9 +77,9 @@
       enable = true;
       wayland = true;
     };
-    layout = "us,ua,ru";
-    xkbVariant = "";
-    xkbOptions = "grp:win_space_toggle";
+    xkb.layout = "us,ua,ru";
+    xkb.variant = "";
+    xkb.options = "grp:win_space_toggle";
     exportConfiguration = true;
   };
 

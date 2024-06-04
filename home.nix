@@ -19,10 +19,8 @@
       pkgs.killall
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.appindicator
-      pkgs.dbeaver
+      pkgs.dbeaver-bin
       pkgs.docker-compose
-      pkgs.nodejs-18_x
-      pkgs.gcc
       pkgs.ripgrep
       pkgs.brave
       pkgs.insomnia
@@ -30,7 +28,35 @@
       pkgs.gpu-screen-recorder
       pkgs.gpu-screen-recorder-gtk
       pkgs.solaar
+      pkgs.libiconv
+      pkgs.openssl
+      pkgs.pkg-config
+      pkgs.rustup
+      pkgs.nodejs-18_x
+      pkgs.time
+      pkgs.protobuf
+      pkgs.systemd
+      pkgs.binaryen
+      pkgs.jq
+      pkgs.wabt
+      pkgs.go
+      pkgs.gnumake
+      pkgs.clang
+      pkgs.zulip
+      (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
     ];
+    sessionVariables = rec {
+      PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+      LD_LIBRARY_PATH = pkgs.lib.strings.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.llvmPackages.libclang.lib
+        pkgs.systemd
+      ];
+      CARGO_NET_GIT_FETCH_WITH_CLI="true";
+      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+      CC_wasm32_unknown_unknown = "${pkgs.llvmPackages.clang-unwrapped}/bin/clang-16";
+      CFLAGS_wasm32_unknown_unknown = "-I ${pkgs.llvmPackages.libclang.lib}/lib/clang/16/include/";
+    };
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;
   programs = {
@@ -64,7 +90,7 @@
   services = {
     gpg-agent = {
       enable = true;
-      pinentryFlavor = "gnome3";
+      pinentryPackage = pkgs.pinentry-gnome3;
       enableSshSupport = true;
     };
   };

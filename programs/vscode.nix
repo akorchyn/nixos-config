@@ -2,7 +2,7 @@
 { pkgs, ... }:
 {
   enable = true;
-  package = pkgs.vscode.fhs;
+  package = pkgs.vscode;
   extensions = with pkgs.vscode-marketplace; [
     bbenoist.nix
     arrterian.nix-env-selector
@@ -21,13 +21,7 @@
     ms-vscode-remote.remote-containers
     mushan.vscode-paste-image
     davidanson.vscode-markdownlint
-  ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    {
-      name = "rust-analyzer";
-      publisher = "rust-lang";
-      version = "0.4.1442"; 
-      sha256 = "0yRobpChDzqxEWIngvWuTeG/nUHStagjCIJpnNDF7zE=";
-    }
+    rust-lang.rust-analyzer
   ];
   userSettings = {
     "editor.inlineSuggest.enabled" = true;
