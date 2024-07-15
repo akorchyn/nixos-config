@@ -35,6 +35,9 @@
       pkgs.nodejs-18_x
       pkgs.time
       pkgs.protobuf
+      pkgs.protoc-gen-rust
+      pkgs.protoc-gen-tonic
+      pkgs.protoc-gen-prost
       pkgs.systemd
       pkgs.binaryen
       pkgs.jq
@@ -44,9 +47,14 @@
       pkgs.clang
       pkgs.zulip
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
+      (pkgs.calibre.override {
+        unrarSupport = true;
+      })
+      pkgs.nixd
     ];
     sessionVariables = rec {
-      PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+      PROTOC="protoc";
+      PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
       LD_LIBRARY_PATH = pkgs.lib.strings.makeLibraryPath [
         pkgs.stdenv.cc.cc.lib
         pkgs.llvmPackages.libclang.lib
@@ -56,6 +64,7 @@
       LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
       CC_wasm32_unknown_unknown = "${pkgs.llvmPackages.clang-unwrapped}/bin/clang-16";
       CFLAGS_wasm32_unknown_unknown = "-I ${pkgs.llvmPackages.libclang.lib}/lib/clang/16/include/";
+      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     };
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;

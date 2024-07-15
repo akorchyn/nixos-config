@@ -12,7 +12,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.initrd.luks.devices."luks-98e53245-477e-4ab1-85ef-34fe0124a315".keyFile = "/crypto_keyfile.bin";
-  
+  boot.blacklistedKernelModules= ["nouveau"];
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/a5cf7cc3-e57e-49dc-bef3-9bd52623376f";
       fsType = "ext4";
@@ -108,6 +109,6 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }

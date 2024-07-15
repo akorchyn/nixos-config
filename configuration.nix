@@ -82,6 +82,7 @@
     xkb.options = "grp:win_space_toggle";
     exportConfiguration = true;
   };
+  services.udisks2.enable = true;
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
