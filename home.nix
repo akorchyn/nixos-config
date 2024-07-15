@@ -66,6 +66,11 @@
       CFLAGS_wasm32_unknown_unknown = "-I ${pkgs.llvmPackages.libclang.lib}/lib/clang/16/include/";
       VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     };
+    sessionPath = [
+      "/home/yurtur/.local/bin"
+      "/home/yurtur/.cargo/bin"
+      "/home/yurtur/.fly/bin"
+    ];
   };
   xdg.configFile."nvim".source = ./conf.d/nvim;
   programs = {
