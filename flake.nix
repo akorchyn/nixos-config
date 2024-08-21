@@ -3,12 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nix-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };  
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-vscode-extensions, ... }:
+  outputs = inputs@{ self, nixpkgs, nix-unstable, home-manager, nix-vscode-extensions, ... }:
     let
       user = "yurtur";
       system = "x86_64-linux";
@@ -30,9 +31,19 @@
       lib = nixpkgs.lib;
     in {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
+        nixos = lib.nixosSystem { 
           inherit system;
-          modules = [ 
+          modules = [
+            { 
+              nixpkgs.overlays = [
+                (final: _prev: {
+                   unstable = import nix-unstable {
+                      system = final.system;
+                      config.allowUnfree = true;
+                   };
+                })
+              ];
+            }
             ./configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;

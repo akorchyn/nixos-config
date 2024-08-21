@@ -1,4 +1,39 @@
 { pkgs, ... }:
+let
+  zed-fhs = pkgs.buildFHSUserEnv {
+    name = "zedf";
+    targetPkgs = pkgs:
+      with pkgs; [
+        openssl
+        curl
+        fontconfig
+        freetype
+        libgit2
+        openssl
+        sqlite
+        zlib
+        zstd
+        perl
+        systemd
+        protobuf
+        rustPlatform.bindgenHook
+        vulkan-loader
+
+        alsa-lib
+        libxkbcommon
+        wayland
+        xorg.libxcb
+        pkg-config
+      ];
+    extraOutputsToInstall = [ "dev" ];
+    runScript = "/home/yurtur/.local/bin/zed";
+    profile=''
+      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${pkgs.vulkan-loader}"
+      export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
+    '';
+
+  };
+in
 {
   nixpkgs.config.allowUnfree = true;
   xsession.preferStatusNotifierItems = true;
@@ -46,11 +81,14 @@
       pkgs.gnumake
       pkgs.clang
       pkgs.zulip
+      pkgs.nixd
+      pkgs.taplo
+      zed-fhs
+
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
       (pkgs.calibre.override {
         unrarSupport = true;
       })
-      pkgs.nixd
     ];
     sessionVariables = rec {
       PROTOC="protoc";
@@ -75,12 +113,12 @@
   xdg.configFile."nvim".source = ./conf.d/nvim;
   programs = {
     home-manager.enable = true;
-    
+
     vscode = import ./programs/vscode.nix pkgs;
     git = import ./programs/git.nix;
     direnv = {
       enable = true;
-      enableZshIntegration = true; 
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 

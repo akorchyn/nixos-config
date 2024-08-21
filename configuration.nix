@@ -26,7 +26,7 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.unstable.linuxPackages_latest;
   };
 
   # Windows time sync
@@ -164,13 +164,7 @@
   virtualisation.docker.enable = true;
 
   programs.zsh.enable = true;
-
-  # cant be done through home manager :c
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+  programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
