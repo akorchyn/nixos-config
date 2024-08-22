@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/nix-ld.nix
     ];
 
   # Bootloader.
@@ -103,6 +104,8 @@
     atomix # puzzle game
   ]);
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -164,7 +167,6 @@
   virtualisation.docker.enable = true;
 
   programs.zsh.enable = true;
-  programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
