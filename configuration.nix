@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
 
   imports =
@@ -28,6 +28,7 @@
       };
     };
     kernelPackages = pkgs.unstable.linuxPackages_latest;
+    kernelParams = ["nvidia-drm.fbdev=1"];
   };
 
   # Windows time sync
@@ -73,10 +74,6 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    displayManager.gdm = {
-			enable = true;
-			wayland = true;
-		};
     desktopManager.gnome.enable = true;
     xkb.layout = "us,ua,ru";
     xkb.variant = "";
@@ -84,6 +81,11 @@
     exportConfiguration = true;
   };
   services.udisks2.enable = true;
+  services.displayManager.sddm = {
+		enable = true;			
+    theme = "${import ./modules/sddm-theme.nix pkgs}";
+  };
+
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
@@ -95,7 +97,7 @@
     pkgs.gedit # text editor
     epiphany # web browser
     geary # email reader
-    evince # document viewer
+    evince # document viewer 
     gnome-characters
     totem # video player
     tali # poker game
@@ -154,15 +156,12 @@
     wget
     firefox
     nix-index
-    k3s
-    gnome.adwaita-icon-theme
     gnomeExtensions.appindicator
+    libsForQt5.qt5.qtquickcontrols2   
+    libsForQt5.qt5.qtgraphicaleffects
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];
-  services.k3s.enable = true;
-  services.k3s.role = "server";
-
 
   virtualisation.docker.enable = true;
 
