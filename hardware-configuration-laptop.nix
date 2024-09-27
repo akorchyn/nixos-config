@@ -14,6 +14,9 @@
   boot.extraModulePackages = [ ];
   boot.initrd.luks.devices."luks-81a767c2-7526-4dc9-a77f-e699382c8c64".keyFile = "/crypto_keyfile.bin";
   
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/2cd02a66-656b-45a5-a96d-3cf50c1b26fa";
       fsType = "ext4";

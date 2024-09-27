@@ -28,7 +28,7 @@
       };
     };
     kernelPackages = pkgs.unstable.linuxPackages_latest;
-    kernelParams = ["nvidia-drm.fbdev=1"];
+    kernelParams = ["nvidia-drm.fbdev=1" "nvidia-drm.modeset=1"];
   };
 
   # Windows time sync
@@ -40,7 +40,6 @@
   };
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -88,6 +87,8 @@
 
   xdg.portal.enable = true;
   programs.hyprland = {
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     enable = true;
   };
 
@@ -109,8 +110,6 @@
     hitori # sudoku game
     atomix # puzzle game
   ]);
-
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSOR = "1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -170,12 +169,6 @@
     gnomeExtensions.appindicator
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects
-
-    # For hyprland
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    }))   
-
     swaynotificationcenter
     kitty
     rofi-wayland
@@ -184,6 +177,7 @@
     waybar
     libnotify
     wlogout
+    nixfmt-rfc-style
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];

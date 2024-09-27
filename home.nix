@@ -73,7 +73,6 @@ in
       PROTOC="protoc";
       PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
       LD_LIBRARY_PATH = pkgs.lib.strings.makeLibraryPath [
-        pkgs.stdenv.cc.cc.lib
         pkgs.llvmPackages.libclang.lib
         pkgs.systemd
       ];
