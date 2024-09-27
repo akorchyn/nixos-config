@@ -86,6 +86,10 @@
     theme = "${import ./modules/sddm-theme.nix pkgs}";
   };
 
+  xdg.portal.enable = true;
+  programs.hyprland = {
+    enable = true;
+  };
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
@@ -106,7 +110,7 @@
     atomix # puzzle game
   ]);
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSOR = "1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -148,6 +152,13 @@
     gnome-browser-connector
   ];
   services.gnome.gnome-browser-connector.enable = true;
+  fonts.packages = with pkgs; [
+      font-awesome
+      noto-fonts
+      powerline-fonts
+      powerline-symbols
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -159,6 +170,20 @@
     gnomeExtensions.appindicator
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects
+
+    # For hyprland
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))   
+
+    swaynotificationcenter
+    kitty
+    rofi-wayland
+    swww
+    networkmanagerapplet
+    waybar
+    libnotify
+    wlogout
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];
@@ -206,4 +231,9 @@
   };
 
   nix.settings.trusted-users = [ "root" "yurtur" ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 }

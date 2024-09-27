@@ -1,0 +1,18 @@
+{
+    "label": "logout",
+    "action": "sleep 1; hyprctl dispatch exit",
+    "text": "Logout",
+    "keybind": "e"
+}
+{
+    "label": "shutdown",
+    "action": "sleep 1; shutdown -P -h now",
+    "text": "Shutdown",
+    "keybind": "s"
+}
+{
+    "label": "reboot",
+    "action": "sleep 1; reboot",
+    "text": "Reboot",
+    "keybind": "r"
+}

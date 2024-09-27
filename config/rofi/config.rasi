@@ -1,0 +1,19 @@
+configuration {
+    modi:                       "drun,run,window";
+    font:                       "Hack Nerd Fontw";
+    show-icons:                 true;
+    icon-theme:                 "kora";
+    display-drun:               "apps";
+    display-run:                "run";
+    display-filebrowser:        "files";
+    display-window:             "windows";
+	drun-display-format:        "{name}";
+    hover-select:               false;
+    scroll-method:              1;
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    window-format:              "{w} · {c} · {t}";
+    
+}
+
+@theme "/home/yurtur/.config/rofi/themes/rounded-pink-dark.rasi"

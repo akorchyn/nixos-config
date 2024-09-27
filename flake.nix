@@ -25,6 +25,12 @@
               }; }
             );
           })
+          (final: _prev: {
+                   unstable = import nix-unstable {
+                      system = final.system;
+                      config.allowUnfree = true;
+                   };
+          })
           nix-vscode-extensions.overlays.default
         ];
       };
@@ -33,6 +39,7 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem { 
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             { 
               nixpkgs.overlays = [

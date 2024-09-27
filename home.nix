@@ -1,5 +1,8 @@
 { pkgs, ... }@inputs:
 
+let
+  cursor = import ./programs/cursor.nix pkgs;
+in
 {
   nixpkgs.config.allowUnfree = true;
   xsession.preferStatusNotifierItems = true;
@@ -48,11 +51,23 @@
       pkgs.nixd
       pkgs.taplo
       pkgs.gnome3.gnome-tweaks
-
+      pkgs.blueman
+      pkgs.inotify-tools
+      pkgs.pamixer
+      pkgs.grim
+      pkgs.slurp
+      pkgs.swappy
+      (pkgs.python312.withPackages (ppkgs: [
+        ppkgs.requests
+      ]))
+      pkgs.rr
+      
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
       (pkgs.calibre.override {
         unrarSupport = true;
       })
+
+      pkgs.unstable.code-cursor
     ];
     sessionVariables = rec {
       PROTOC="protoc";
@@ -73,6 +88,13 @@
       "/home/yurtur/.cargo/bin"
       "/home/yurtur/.fly/bin"
     ];
+    file = {
+      ".config/swaync".source = ./config/swaync;
+      ".config/hypr".source = ./config/hypr;
+      ".config/waybar".source = ./config/waybar;
+      ".config/rofi".source = ./config/rofi;
+      ".config/wlogout".source = ./config/wlogout;
+    };
   };
 
   gtk = import ./modules/gtk.nix inputs;
