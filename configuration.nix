@@ -84,6 +84,7 @@
 		enable = true;			
     theme = "${import ./modules/sddm-theme.nix pkgs}";
   };
+  services.blueman.enable = true;
 
   xdg.portal.enable = true;
   programs.hyprland = {

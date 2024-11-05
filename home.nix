@@ -51,7 +51,6 @@ in
       pkgs.nixd
       pkgs.taplo
       pkgs.gnome3.gnome-tweaks
-      pkgs.blueman
       pkgs.inotify-tools
       pkgs.pamixer
       pkgs.grim
@@ -61,6 +60,7 @@ in
         ppkgs.requests
       ]))
       pkgs.rr
+      pkgs.unstable.figma-linux
       
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
       (pkgs.calibre.override {
