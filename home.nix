@@ -68,6 +68,7 @@ in
       })
 
       pkgs.unstable.code-cursor
+      pkgs.obsidian
     ];
     sessionVariables = rec {
       PROTOC="protoc";
