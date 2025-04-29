@@ -27,7 +27,7 @@
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }
   ];
-  initExtra = ''
+  initContent = ''
     source $HOME/.p10k.zsh
     npm set prefix $HOME/.npm-packages
     export PATH="$HOME/.npm-packages/bin:$PATH"

@@ -13,7 +13,6 @@ in
     keyboard = null;
     stateVersion = "22.11";
     packages = [
-      pkgs.slack
       pkgs.tdesktop
       pkgs.discord
       pkgs.pinentry-curses
@@ -34,23 +33,18 @@ in
       pkgs.openssl
       pkgs.pkg-config
       pkgs.rustup
-      pkgs.nodejs-18_x
+      pkgs.nodejs_23
       pkgs.time
-      pkgs.protobuf
-      pkgs.protoc-gen-rust
-      pkgs.protoc-gen-tonic
-      pkgs.protoc-gen-prost
       pkgs.systemd
       pkgs.binaryen
       pkgs.jq
       pkgs.wabt
       pkgs.go
       pkgs.gnumake
-      pkgs.clang
       pkgs.zulip
       pkgs.nixd
       pkgs.taplo
-      pkgs.gnome3.gnome-tweaks
+      pkgs.gnome-tweaks
       pkgs.inotify-tools
       pkgs.pamixer
       pkgs.grim
@@ -60,28 +54,18 @@ in
         ppkgs.requests
       ]))
       pkgs.rr
-      pkgs.unstable.figma-linux
       
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
-      (pkgs.calibre.override {
-        unrarSupport = true;
-      })
 
-      pkgs.unstable.code-cursor
-      pkgs.obsidian
+      pkgs.code-cursor
     ];
     sessionVariables = rec {
-      PROTOC="protoc";
       PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
       LD_LIBRARY_PATH = pkgs.lib.strings.makeLibraryPath [
         pkgs.llvmPackages.libclang.lib
         pkgs.systemd
       ];
       CARGO_NET_GIT_FETCH_WITH_CLI="true";
-      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-      CC_wasm32_unknown_unknown = "${pkgs.llvmPackages.clang-unwrapped}/bin/clang-16";
-      CFLAGS_wasm32_unknown_unknown = "-I ${pkgs.llvmPackages.libclang.lib}/lib/clang/16/include/";
-      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     };
     sessionPath = [
       "/home/yurtur/.local/bin"
@@ -121,7 +105,6 @@ in
 
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
-    gnome-terminal = import ./programs/gnome-terminal.nix;
     neovim = import ./programs/neovim.nix;
 
     gpg.enable = true;

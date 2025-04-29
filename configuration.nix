@@ -27,8 +27,8 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
-    kernelPackages = pkgs.unstable.linuxPackages_latest;
-    kernelParams = ["nvidia-drm.fbdev=1" "nvidia-drm.modeset=1"];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = ["nvidia-drm.fbdev=1" "nvidia-drm.modeset=1" "nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
   };
 
   # Windows time sync
@@ -96,11 +96,10 @@
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
-  ]) ++ (with pkgs.gnome; [
     cheese # webcam tool
     gnome-music
-    gnome-terminal
-    pkgs.gedit # text editor
+    gnome-terminal    
+    gedit # text editor
     epiphany # web browser
     geary # email reader
     evince # document viewer 
@@ -115,9 +114,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   hardware.logitech.wireless.enable = true;
   hardware.ledger.enable = true;
   security.rtkit.enable = true;
@@ -157,7 +154,7 @@
       noto-fonts
       powerline-fonts
       powerline-symbols
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.symbols-only
     ];
 
   # List packages installed in system profile. To search, run:
@@ -181,7 +178,7 @@
     nixfmt-rfc-style
   ];
   environment.pathsToLink = [ "/share/zsh" ];
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ledger-udev-rules ];
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ledger-udev-rules ];
 
   virtualisation.docker.enable = true;
 
@@ -221,14 +218,14 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.latest;
     extraOptions = "experimental-features = nix-command flakes";
   };
 
   nix.settings.trusted-users = [ "root" "yurtur" ];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = ["https://hyprland.cachix.org" "https://nix-community.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
   };
 }
