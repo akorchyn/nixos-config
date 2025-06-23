@@ -33,7 +33,7 @@ in
       pkgs.openssl
       pkgs.pkg-config
       pkgs.rustup
-      pkgs.nodejs_23
+      pkgs.nodejs_24
       pkgs.time
       pkgs.systemd
       pkgs.binaryen
@@ -106,6 +106,7 @@ in
     zsh = import ./programs/zsh.nix pkgs;
     chromium = import ./programs/chromium.nix;
     neovim = import ./programs/neovim.nix;
+    zed-editor = import ./programs/zed.nix pkgs;
 
     gpg.enable = true;
     gh.enable = true;
