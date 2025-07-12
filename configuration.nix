@@ -73,12 +73,12 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
     xkb.layout = "us,ua,ru";
     xkb.variant = "";
     xkb.options = "grp:win_space_toggle";
     exportConfiguration = true;
   };
+  services.desktopManager.gnome.enable = true;
   services.udisks2.enable = true;
   services.displayManager.sddm = {
 		enable = true;			
