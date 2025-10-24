@@ -174,7 +174,7 @@
     libsForQt5.qt5.qtgraphicaleffects
     swaynotificationcenter
     kitty
-    rofi-wayland
+    rofi
     swww
     networkmanagerapplet
     waybar
