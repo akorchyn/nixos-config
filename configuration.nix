@@ -15,18 +15,23 @@
 
   boot = {
     loader = {
-      grub = {
+      # grub = {
+      #   enable = true;
+      #   devices = ["nodev"];
+      #   useOSProber = true;
+      #   configurationLimit = 15;
+      #   efiSupport = true;
+      # };
+      systemd-boot = {
         enable = true;
-        devices = ["nodev"];
-        useOSProber = true;
-        configurationLimit = 5;
-        efiSupport = true;
+        configurationLimit = 15;
       };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
     };
+    supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = ["nvidia-drm.fbdev=1" "nvidia-drm.modeset=1" "nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
   };

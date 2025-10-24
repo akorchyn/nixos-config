@@ -58,6 +58,7 @@ in
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
 
       pkgs.code-cursor
+      pkgs.claude-code
     ];
     sessionVariables = rec {
       PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
