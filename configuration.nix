@@ -39,6 +39,7 @@
   # Windows time sync
   time.hardwareClockInLocalTime = true;
 
+
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -83,7 +84,6 @@
     xkb.options = "grp:win_space_toggle";
     exportConfiguration = true;
   };
-  services.desktopManager.gnome.enable = true;
   services.udisks2.enable = true;
   services.displayManager.sddm = {
 		enable = true;			
@@ -118,23 +118,24 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.pulseaudio.enable = false;
+  services.pipewire.enable = false;
+  services.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
   hardware.logitech.wireless.enable = true;
   hardware.ledger.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  hardware.bluetooth = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
   };
+  security.rtkit.enable = true;
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -150,10 +151,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.firefox.nativeMessagingHosts.packages = with pkgs; [
-    gnome-browser-connector
-  ];
-  services.gnome.gnome-browser-connector.enable = true;
   fonts.packages = with pkgs; [
       font-awesome
       noto-fonts
@@ -169,7 +166,6 @@
     wget
     firefox
     nix-index
-    gnomeExtensions.appindicator
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects
     swaynotificationcenter
