@@ -1,7 +1,14 @@
-{ pkgs, ... }@inputs:
+{ pkgs, inputs, ... }:
 
 let
   cursor = import ./programs/cursor.nix pkgs;
+  stremio-pkgs = import inputs.nixpkgs-for-stremio {
+    system = pkgs.system;
+    config.allowUnfree = true;
+    config.permittedInsecurePackages = [
+      "qtwebkit-5.212.0-alpha4"
+    ];
+  };
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -13,7 +20,8 @@ in
     keyboard = null;
     stateVersion = "22.11";
     packages = [
-      pkgs.tdesktop
+      pkgs.telegram-desktop
+      pkgs.slack
       pkgs.discord
       pkgs.pinentry-curses
       pkgs.zsh-powerlevel10k
@@ -59,6 +67,7 @@ in
 
       pkgs.code-cursor
       pkgs.claude-code
+      stremio-pkgs.stremio
     ];
     sessionVariables = rec {
       PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.systemd.dev}/lib/pkgconfig";
@@ -82,7 +91,7 @@ in
     };
   };
 
-  gtk = import ./modules/gtk.nix inputs;
+  gtk = import ./modules/gtk.nix { inherit pkgs; };
 
   xdg.configFile."nvim".source = ./conf.d/nvim;
   programs = {
