@@ -22,7 +22,6 @@ in
     packages = [
       pkgs.telegram-desktop
       pkgs.slack
-      pkgs.discord
       pkgs.pinentry-curses
       pkgs.zsh-powerlevel10k
       pkgs.meslo-lgs-nf
@@ -62,6 +61,7 @@ in
         ppkgs.requests
       ]))
       pkgs.rr
+      pkgs.bambu-studio
       
       (pkgs.lib.optionals pkgs.stdenv.isLinux pkgs.mold)
 

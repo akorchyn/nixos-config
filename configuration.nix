@@ -118,10 +118,13 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.pipewire.enable = false;
-  services.pulseaudio = {
+  services.pulseaudio.enable = false;
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
   };
   hardware.logitech.wireless.enable = true;
   hardware.ledger.enable = true;
